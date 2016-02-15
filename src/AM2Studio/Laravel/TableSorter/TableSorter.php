@@ -2,6 +2,8 @@
 
 namespace AM2Studio\Laravel\TableSorter;
 
+use Illuminate\Pagination\LengthAwarePaginator;
+
 class TableSorter
 {
 	
