@@ -21,6 +21,7 @@
         "php" : ">=5.4.0",
 		"laravel/framework": "5.2.*"
     },
+	"minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "AM2Studio\\Laravel\\TableSorter\\": "src/AM2Studio/Laravel/TableSorter/"
