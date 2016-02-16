@@ -2,6 +2,7 @@
     "name": "am2studio/laravel-table-sorter",
     "type": "library",
     "description": "Laravel table sorter",
+	"version": "1.0.0",
     "keywords": [
         "AM2Studio",
         "Laravel table sorter"
