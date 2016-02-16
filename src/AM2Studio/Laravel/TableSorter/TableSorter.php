@@ -2,12 +2,10 @@
 
 namespace AM2Studio\Laravel\TableSorter;
 
-use Illuminate\Pagination\LengthAwarePaginator;
-
 class TableSorter
 {
 	
-	public static function sort(array $headings, LengthAwarePaginator $paginator, array $config)
+	public static function sort(array $headings, \Illuminate\Pagination\LengthAwarePaginator $paginator, array $config)
     {
         $sort_by   = $config['sort_by'];
         $sort_type = $config['sort_type'];
