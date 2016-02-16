@@ -27,5 +27,5 @@
         "psr-4": {
             "AM2Studio\\Laravel\\TableSorter\\": "src/AM2Studio/Laravel/TableSorter/"
         }
-    },
+    }
 }
