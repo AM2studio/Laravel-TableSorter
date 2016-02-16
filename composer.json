@@ -2,12 +2,11 @@
     "name": "am2studio/laravel-table-sorter",
     "type": "library",
     "description": "Laravel table sorter",
-	"version": "1.0.0",
     "keywords": [
         "AM2Studio",
         "Laravel table sorter"
     ],
-    "homepage": "https://github.com/AM2studio/Laravel-Finite",
+    "homepage": "https://github.com/AM2studio/Laravel-TableSorter",
     "license": "MIT",
     "authors": [
         {
