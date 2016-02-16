@@ -18,12 +18,14 @@
     ],
     "require": {
         "php" : ">=5.4.0",
-		"laravel/framework": "5.2.*"
+        "laravel/framework": "5.2.*"
     },
-    "minimum-stability": "dev",
+    "require-dev": {
+        
+    },
     "autoload": {
         "psr-4": {
             "AM2Studio\\Laravel\\TableSorter\\": "src/AM2Studio/Laravel/TableSorter/"
         }
-    }
+    },
 }
