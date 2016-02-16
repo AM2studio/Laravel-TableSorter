@@ -7,7 +7,6 @@ class TableSorter
 	
 	public static function sort(array $headings, \Illuminate\Pagination\LengthAwarePaginator $paginator, array $config)
     {
-		echo 'testtttttttttttttttttttttttttttttttttttttttttttttttttttttt';
         $sort_by   = $config['sort_by'];
         $sort_type = $config['sort_type'];
 
