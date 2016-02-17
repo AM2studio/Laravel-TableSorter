@@ -96,11 +96,6 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details.
 
-## Credits
-
-- [Filip Horvat][link-author]
-- [All Contributors][link-contributors]
-
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
