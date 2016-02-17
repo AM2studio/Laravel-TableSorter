@@ -88,8 +88,6 @@ Full view table :
 <div>{!! $users !!}</div>
 ```
 
-It is recommended that you use ```Relation::morphTo([])``` because that way if you change the namespace of your model the records in DB won't break.
-
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
