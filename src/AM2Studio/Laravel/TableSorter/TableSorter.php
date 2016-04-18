@@ -27,12 +27,12 @@ class TableSorter
 
             $class = '';
             if ($sort_by == $name) {
-                $class .= 'order-active ';
+                $class .= 'order-active order-asc ';
             }
             if ($sort_type_this == 'ASC') {
-                $class .= 'order-asc order-next-desc';
+                $class .= 'order-next-desc';
             } else {
-                $class .= 'order-desc order-next-asc';
+                $class .= 'order-next-asc';
             }
 
             $paginator_tmp = clone $paginator;
