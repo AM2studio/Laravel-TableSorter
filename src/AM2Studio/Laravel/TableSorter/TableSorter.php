@@ -27,8 +27,15 @@ class TableSorter
 
             $class = '';
             if ($sort_by == $name) {
-                $class .= 'order-active order-asc ';
+                $class .= 'order-active ';
             }
+			
+			if ($sort_by == $name  &&  $sort_type_this == 'ASC') {
+				$class .= 'order-asc ';
+			}else{
+				$class .= 'order-desc ';
+			}
+			
             if ($sort_type_this == 'ASC') {
                 $class .= 'order-next-desc';
             } else {
