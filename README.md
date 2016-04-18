@@ -24,7 +24,7 @@ Code in view :
     $users,
     [
         'sort_by' => 'name', 'sort_type' => 'ASC',
-        'template' => '<th><a href="%s">%s</a></th>'
+        'template' => '<th class="%s"><a href="%s">%s</a></th>'
     ])
 }}
 ```
@@ -42,7 +42,7 @@ variable $config contains default sort_by/sort_type and template
 ```php
 [
     'sort_by' => 'name', 'sort_type' => 'ASC',
-    'template' => '<th><a href="%s">%s</a></th>'
+    'template' => '<th class="%s"><a href="%s">%s</a></th>'
 ]
 ```
 
@@ -69,7 +69,7 @@ Full view table :
 					$users,
 					[
 						'sort_by' => 'name', 'sort_type' => 'ASC',
-						'template' => '<th><a href="%s">%s</a></th>'
+						'template' => '<th class="%s"><a href="%s">%s</a></th>'
 					])
 			}}
 		</tr>
