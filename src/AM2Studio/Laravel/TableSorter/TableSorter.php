@@ -33,30 +33,32 @@ class TableSorter
         //
     }
 
-    public function init($data)
+    public static function create($data)
     {
+        $tableSorter = new self();
+
         //load from app config
         $templateConfig = (Config::get('table-sorter.template')) ? Config::get('table-sorter.template') : '<th class="%s"><a href="%s"> %s </a></th>';
         $templateDisabledConfig = (Config::get('table-sorter.templateDisabled')) ? Config::get('table-sorter.templateDisabled') : '<th class="%s"> %s </th>';
-        $this->sort_by_variable = (Config::get('table-sorter.sort_by_variable')) ? Config::get('table-sorter.sort_by_variable') : 'sort_by';
-        $this->sort_type_variable = (Config::get('table-sorter.sort_type_variable')) ? Config::get('table-sorter.sort_type_variable') : 'sort_type';
-        $this->order_active_class = (Config::get('table-sorter.order_active_class')) ? Config::get('table-sorter.order_active_class') : 'order-active';
-        $this->order_asc_class = (Config::get('table-sorter.order_asc_class')) ? Config::get('table-sorter.order_asc_class') : 'order-asc';
-        $this->order_desc_class = (Config::get('table-sorter.order_desc_class')) ? Config::get('table-sorter.order_desc_class') : 'order-desc';
-        $this->order_next_asc_class = (Config::get('table-sorter.order_next_asc_class')) ? Config::get('table-sorter.order_next_asc_class') : 'order-next-asc';
-        $this->order_next_desc_class = (Config::get('table-sorter.order_next_desc_class')) ? Config::get('table-sorter.order_next_desc_class') : 'order-next-desc';
+        $tableSorter->sort_by_variable = (Config::get('table-sorter.sort_by_variable')) ? Config::get('table-sorter.sort_by_variable') : 'sort_by';
+        $tableSorter->sort_type_variable = (Config::get('table-sorter.sort_type_variable')) ? Config::get('table-sorter.sort_type_variable') : 'sort_type';
+        $tableSorter->order_active_class = (Config::get('table-sorter.order_active_class')) ? Config::get('table-sorter.order_active_class') : 'order-active';
+        $tableSorter->order_asc_class = (Config::get('table-sorter.order_asc_class')) ? Config::get('table-sorter.order_asc_class') : 'order-asc';
+        $tableSorter->order_desc_class = (Config::get('table-sorter.order_desc_class')) ? Config::get('table-sorter.order_desc_class') : 'order-desc';
+        $tableSorter->order_next_asc_class = (Config::get('table-sorter.order_next_asc_class')) ? Config::get('table-sorter.order_next_asc_class') : 'order-next-asc';
+        $tableSorter->order_next_desc_class = (Config::get('table-sorter.order_next_desc_class')) ? Config::get('table-sorter.order_next_desc_class') : 'order-next-desc';
 
-        $this->headings = $data['headings'];
-        $this->paginator = $data['paginator'];
+        $tableSorter->headings = $data['headings'];
+        $tableSorter->paginator = $data['paginator'];
         $config = (isset($data['config'])) ? $data['config'] : [];
 
         //load overridden config
-        $this->template = (isset($config['template'])) ? $config['template'] : $templateConfig;
-        $this->templateDisabled = (isset($config['templateDisabled'])) ? $config['templateDisabled'] : $templateDisabledConfig;
-        $this->sort_by = (isset($config['sort_by'])) ? $config['sort_by'] : Request::get($this->sort_by_variable);
-        $this->sort_type = (isset($config['sort_type'])) ? $config['sort_type'] : Request::get($this->sort_type_variable);
+        $tableSorter->template = (isset($config['template'])) ? $config['template'] : $templateConfig;
+        $tableSorter->templateDisabled = (isset($config['templateDisabled'])) ? $config['templateDisabled'] : $templateDisabledConfig;
+        $tableSorter->sort_by = (isset($config['sort_by'])) ? $config['sort_by'] : Request::get($tableSorter->sort_by_variable);
+        $tableSorter->sort_type = (isset($config['sort_type'])) ? $config['sort_type'] : Request::get($tableSorter->sort_type_variable);
 
-        return $this;
+        return $tableSorter;
     }
 
     public function table()
@@ -80,19 +82,15 @@ class TableSorter
             $class = '';
             if ($this->sort_by == $name) {
                 if ($sort_type_this == 'ASC') {
-                    //$class .= 'order-active order-desc ';
                     $class .= $this->order_active_class.' '.$this->order_desc_class.' ';
                 } else {
-                    //$class .= 'order-active order-asc ';
                     $class .= $this->order_active_class.' '.$this->order_asc_class.' ';
                 }
             }
 
             if ($sort_type_this == 'ASC') {
-                //$class .= 'order-next-asc';
                 $class .= $this->order_next_asc_class;
             } else {
-                //$class .= 'order-next-desc';
                 $class .= $this->order_next_desc_class;
             }
 
@@ -109,7 +107,7 @@ class TableSorter
             }
         }
 
-        echo $string;
+        return $string;
     }
 
     public function selectSortBy($configForm)
@@ -125,13 +123,13 @@ class TableSorter
             }
         }
 
-        echo \Form::select($this->sort_by_variable, $dataSelect, $this->sort_by, $configForm);
+        return \Form::select($this->sort_by_variable, $dataSelect, $this->sort_by, $configForm);
     }
 
     public function selectSortType($configForm)
     {
         $dataSelect = ['ASC' => 'ASC', 'DESC' => 'DESC'];
 
-        echo \Form::select($this->sort_by_variable, $dataSelect, $this->sort_type, $configForm);
+        return \Form::select($this->sort_type_variable, $dataSelect, $this->sort_type, $configForm);
     }
 }
