@@ -128,7 +128,7 @@ class TableSorter
 
     public function selectSortType($configForm)
     {
-        $dataSelect = ['ASC' => 'ASC', 'DESC' => 'DESC'];
+        $dataSelect = ['ASC' => Config::get('table-sorter.name_asc', 'ASC'), 'DESC' => Config::get('table-sorter.name_desc', 'DESC')];
 
         return \Form::select($this->sort_type_variable, $dataSelect, $this->sort_type, $configForm);
     }
