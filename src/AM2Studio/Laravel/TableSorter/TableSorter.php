@@ -110,10 +110,17 @@ class TableSorter
         return $string;
     }
 
-    public function selectSortBy($configForm)
+    public function selectSortBy($configForm, $sort = true)
     {
+        $headings = $this->headings;
+        if ($sort) {
+            usort($headings, function($a, $b){
+                return strcmp($a["title"], $b["title"]);
+            });
+        }
+        
         $dataSelect = [];
-        foreach ($this->headings as $heading) {
+        foreach ($headings as $heading) {
             $name = (isset($heading['name']))  ? $heading['name'] : '';
             $title = (isset($heading['title'])) ? $heading['title'] : '';
             $sort = (isset($heading['sort']))  ? $heading['sort'] : true;
