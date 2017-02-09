@@ -38,7 +38,7 @@ class TableSorter
         $tableSorter = new self();
 
         //load from app config
-        $templateConfig = (Config::get('table-sorter.template')) ? Config::get('table-sorter.template') : '<th class="%s"><a href="%s"> %s </a></th>';
+        $templateConfig = (Config::get('table-sorter.template')) ? Config::get('table-sorter.template') : '<th class="%s %s"><a href="%s"> %s </a></th>';
         $templateDisabledConfig = (Config::get('table-sorter.templateDisabled')) ? Config::get('table-sorter.templateDisabled') : '<th class="%s"> %s </th>';
         $tableSorter->sort_by_variable = (Config::get('table-sorter.sort_by_variable')) ? Config::get('table-sorter.sort_by_variable') : 'sort_by';
         $tableSorter->sort_type_variable = (Config::get('table-sorter.sort_type_variable')) ? Config::get('table-sorter.sort_type_variable') : 'sort_type';
