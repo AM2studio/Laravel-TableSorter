@@ -39,7 +39,7 @@ class TableSorter
 
         //load from app config
         $templateConfig = (Config::get('table-sorter.template')) ? Config::get('table-sorter.template') : '<th class="%s %s"><a href="%s"> %s </a></th>';
-        $templateDisabledConfig = (Config::get('table-sorter.templateDisabled')) ? Config::get('table-sorter.templateDisabled') : '<th class="%s"> %s </th>';
+        $templateDisabledConfig = (Config::get('table-sorter.templateDisabled')) ? Config::get('table-sorter.templateDisabled') : '<th class="%s %s"> %s </th>';
         $tableSorter->sort_by_variable = (Config::get('table-sorter.sort_by_variable')) ? Config::get('table-sorter.sort_by_variable') : 'sort_by';
         $tableSorter->sort_type_variable = (Config::get('table-sorter.sort_type_variable')) ? Config::get('table-sorter.sort_type_variable') : 'sort_type';
         $tableSorter->order_active_class = (Config::get('table-sorter.order_active_class')) ? Config::get('table-sorter.order_active_class') : 'order-active';
@@ -100,11 +100,12 @@ class TableSorter
                 $string .= sprintf(
                     $this->template,
                     $th_class,
+                    $class,
                     $paginator_tmp->appends([$this->sort_by_variable => $name, $this->sort_type_variable => $sort_type_this])->url($paginator_tmp->currentPage()),
                     $title
                 );
             } else {
-                $string .= sprintf($this->templateDisabled, 'order-disabled', $title);
+                $string .= sprintf($this->templateDisabled, 'order-disabled', $class, $title);
             }
         }
 
