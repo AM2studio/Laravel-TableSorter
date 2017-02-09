@@ -67,6 +67,7 @@ class TableSorter
         foreach ($this->headings as $heading) {
             $name = (isset($heading['name']))  ? $heading['name'] : '';
             $title = (isset($heading['title'])) ? $heading['title'] : '';
+            $class = (isset($heading['class'])) ? $heading['class'] : '';
             $sort = (isset($heading['sort']))  ? $heading['sort'] : true;
 
             if ($this->sort_by != $name) {
@@ -79,26 +80,26 @@ class TableSorter
                 }
             }
 
-            $class = '';
+            $th_class = '';
             if ($this->sort_by == $name) {
                 if ($sort_type_this == 'ASC') {
-                    $class .= $this->order_active_class.' '.$this->order_desc_class.' ';
+                    $th_class .= $this->order_active_class.' '.$this->order_desc_class.' ';
                 } else {
-                    $class .= $this->order_active_class.' '.$this->order_asc_class.' ';
+                    $th_class .= $this->order_active_class.' '.$this->order_asc_class.' ';
                 }
             }
 
             if ($sort_type_this == 'ASC') {
-                $class .= $this->order_next_asc_class;
+                $th_class .= $this->order_next_asc_class;
             } else {
-                $class .= $this->order_next_desc_class;
+                $th_class .= $this->order_next_desc_class;
             }
 
             if ($sort == true) {
                 $paginator_tmp = clone $this->paginator;
                 $string .= sprintf(
                     $this->template,
-                    $class,
+                    $th_class,
                     $paginator_tmp->appends([$this->sort_by_variable => $name, $this->sort_type_variable => $sort_type_this])->url($paginator_tmp->currentPage()),
                     $title
                 );
@@ -110,17 +111,10 @@ class TableSorter
         return $string;
     }
 
-    public function selectSortBy($configForm, $sort = true)
+    public function selectSortBy($configForm)
     {
-        $headings = $this->headings;
-        if ($sort) {
-            usort($headings, function($a, $b){
-                return strcmp($a["title"], $b["title"]);
-            });
-        }
-        
         $dataSelect = [];
-        foreach ($headings as $heading) {
+        foreach ($this->headings as $heading) {
             $name = (isset($heading['name']))  ? $heading['name'] : '';
             $title = (isset($heading['title'])) ? $heading['title'] : '';
             $sort = (isset($heading['sort']))  ? $heading['sort'] : true;
@@ -135,7 +129,7 @@ class TableSorter
 
     public function selectSortType($configForm)
     {
-        $dataSelect = ['ASC' => Config::get('table-sorter.name_asc', 'ASC'), 'DESC' => Config::get('table-sorter.name_desc', 'DESC')];
+        $dataSelect = ['ASC' => 'ASC', 'DESC' => 'DESC'];
 
         return \Form::select($this->sort_type_variable, $dataSelect, $this->sort_type, $configForm);
     }
