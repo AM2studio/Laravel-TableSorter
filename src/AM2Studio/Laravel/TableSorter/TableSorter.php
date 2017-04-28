@@ -11,6 +11,7 @@ class TableSorter
     private $sort_by_variable;
     //default sort_type variable in url (sort_type)
     private $sort_type_variable;
+    private $sort_type_default;
 
     //classes which plugin uses for links
     private $order_active_class;
@@ -42,6 +43,7 @@ class TableSorter
         $templateDisabledConfig = (Config::get('table-sorter.templateDisabled')) ? Config::get('table-sorter.templateDisabled') : '<th class="%s"> %s </th>';
         $tableSorter->sort_by_variable = (Config::get('table-sorter.sort_by_variable')) ? Config::get('table-sorter.sort_by_variable') : 'sort_by';
         $tableSorter->sort_type_variable = (Config::get('table-sorter.sort_type_variable')) ? Config::get('table-sorter.sort_type_variable') : 'sort_type';
+        $tableSorter->sort_type_default = (Config::get('table-sorter.sort_type_default')) ? Config::get('table-sorter.sort_type_default') : 'ASC';
         $tableSorter->order_active_class = (Config::get('table-sorter.order_active_class')) ? Config::get('table-sorter.order_active_class') : 'order-active';
         $tableSorter->order_asc_class = (Config::get('table-sorter.order_asc_class')) ? Config::get('table-sorter.order_asc_class') : 'order-asc';
         $tableSorter->order_desc_class = (Config::get('table-sorter.order_desc_class')) ? Config::get('table-sorter.order_desc_class') : 'order-desc';
@@ -70,7 +72,7 @@ class TableSorter
             $sort = (isset($heading['sort']))  ? $heading['sort'] : true;
 
             if ($this->sort_by != $name) {
-                $sort_type_this = 'ASC';
+                $sort_type_this = $this->sort_type_default;
             } else {
                 if ($this->sort_type == 'ASC') {
                     $sort_type_this = 'DESC';
