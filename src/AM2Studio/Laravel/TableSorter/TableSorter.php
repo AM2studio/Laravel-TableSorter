@@ -67,9 +67,10 @@ class TableSorter
     {
         $string = '';
         foreach ($this->headings as $heading) {
-            $name = (isset($heading['name']))  ? $heading['name'] : '';
-            $title = (isset($heading['title'])) ? $heading['title'] : '';
-            $sort = (isset($heading['sort']))  ? $heading['sort'] : true;
+            $name   = (isset($heading['name']))   ? $heading['name']  : '';
+            $title  = (isset($heading['title']))  ? $heading['title'] : '';
+            $sort   = (isset($heading['sort']))   ? $heading['sort']  : true;
+            $class  = (isset($heading['class']))  ? $heading['class'] . ' '  : '';
 
             if ($this->sort_by != $name) {
                 $sort_type_this = $this->sort_type_default;
@@ -81,7 +82,6 @@ class TableSorter
                 }
             }
 
-            $class = '';
             if ($this->sort_by == $name) {
                 if ($sort_type_this == 'ASC') {
                     $class .= $this->order_active_class.' '.$this->order_desc_class.' ';
