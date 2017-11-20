@@ -19,6 +19,7 @@ class TableSorter
     private $order_desc_class;
     private $order_next_asc_class;
     private $order_next_desc_class;
+    private $heading_class;
 
     private $headings;
     private $paginator;
@@ -49,6 +50,7 @@ class TableSorter
         $tableSorter->order_desc_class = (Config::get('table-sorter.order_desc_class')) ? Config::get('table-sorter.order_desc_class') : 'order-desc';
         $tableSorter->order_next_asc_class = (Config::get('table-sorter.order_next_asc_class')) ? Config::get('table-sorter.order_next_asc_class') : 'order-next-asc';
         $tableSorter->order_next_desc_class = (Config::get('table-sorter.order_next_desc_class')) ? Config::get('table-sorter.order_next_desc_class') : 'order-next-desc';
+        $tableSorter->heading_class = (Config::get('table-sorter.heading_class')) ? Config::get('table-sorter.heading_class') : '';
 
         $tableSorter->headings = $data['headings'];
         $tableSorter->paginator = $data['paginator'];
@@ -59,6 +61,8 @@ class TableSorter
         $tableSorter->templateDisabled = (isset($config['templateDisabled'])) ? $config['templateDisabled'] : $templateDisabledConfig;
         $tableSorter->sort_by = (isset($config['sort_by'])) ? $config['sort_by'] : Request::get($tableSorter->sort_by_variable);
         $tableSorter->sort_type = (isset($config['sort_type'])) ? $config['sort_type'] : Request::get($tableSorter->sort_type_variable);
+
+
 
         return $tableSorter;
     }
@@ -94,6 +98,10 @@ class TableSorter
                 $class .= $this->order_next_asc_class;
             } else {
                 $class .= $this->order_next_desc_class;
+            }
+
+            if ($this->heading_class) {
+                $class .= ' ' . $this->heading_class;
             }
 
             if ($sort == true) {
