@@ -113,7 +113,7 @@ class TableSorter
                     $title
                 );
             } else {
-                $string .= sprintf($this->templateDisabled, 'order-disabled', $title);
+                $string .= sprintf($this->templateDisabled, 'order-disabled ' . $this->heading_class, $title);
             }
         }
 
