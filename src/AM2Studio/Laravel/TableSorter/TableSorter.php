@@ -62,8 +62,6 @@ class TableSorter
         $tableSorter->sort_by = (isset($config['sort_by'])) ? $config['sort_by'] : Request::get($tableSorter->sort_by_variable);
         $tableSorter->sort_type = (isset($config['sort_type'])) ? $config['sort_type'] : Request::get($tableSorter->sort_type_variable);
 
-
-
         return $tableSorter;
     }
 
@@ -109,7 +107,7 @@ class TableSorter
                 $string .= sprintf(
                     $this->template,
                     $class,
-                    $paginator_tmp->appends([$this->sort_by_variable => $name, $this->sort_type_variable => $sort_type_this])->url($paginator_tmp->currentPage()),
+                    $paginator_tmp instanceof LengthAwarePaginator ? $paginator_tmp->appends([$this->sort_by_variable => $name, $this->sort_type_variable => $sort_type_this])->url($paginator_tmp->currentPage()) : '',
                     $title
                 );
             } else {
