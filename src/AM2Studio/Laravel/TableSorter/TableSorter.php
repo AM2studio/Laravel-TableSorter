@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Pagination\LengthAwarePaginator;
 
+
 class TableSorter
 {
     //default sort_by variable in url (sort_by)
